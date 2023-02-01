@@ -29,9 +29,9 @@ const getPlayerById = (req, res) => {
 };
 
 const postPlayer = (req, res) => {
-  const user = req.body;
-  models.user
-    .insert(user)
+  const player = req.body;
+  models.players
+    .insert(player)
     .then(([result]) => {
       const message = "Player successfully created.";
       res.location(`/players/${result.insertId}`).status(201).json(message);
@@ -51,7 +51,7 @@ const editPlayer = (req, res) => {
       if (rows.affectedRows === 0) {
         res.sendStatus(404);
       } else {
-        const message = "Product successfully modified.";
+        const message = "Player successfully modified.";
         res.status(200).json({ message });
       }
     })
@@ -67,7 +67,7 @@ const deletePlayer = (req, res) => {
       if (rows.affectedRows === 0) {
         res.sendStatus(404);
       } else {
-        const message = "Product successfully deleted ";
+        const message = "Player successfully deleted ";
         res.status(200).json({ message });
       }
     })

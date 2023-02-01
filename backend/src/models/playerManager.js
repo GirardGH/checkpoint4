@@ -54,7 +54,7 @@ class ItemManager extends AbstractManager {
       favorite_team,
     } = player;
     return this.connection.query(
-      `update into ${this.table} set firstname = ?, lastname = ?, dob = ?, nationality = ?, position = ?, number = ?, url_image = ?, favorite_team = ?`,
+      `update ${this.table} set firstname = ?, lastname = ?, dob = ?, nationality = ?, position = ?, number = ?, url_image = ?, favorite_team = ?`,
       [
         firstname,
         lastname,
