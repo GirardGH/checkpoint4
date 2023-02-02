@@ -2,7 +2,7 @@ const models = require("../models");
 
 const getPlayers = (req, res) => {
   models.players
-    .findAll()
+    .findAllPlayers()
     .then(([rows]) => {
       res.status(200).json(rows);
     })
@@ -14,7 +14,7 @@ const getPlayers = (req, res) => {
 
 const getPlayerById = (req, res) => {
   models.players
-    .find(req.params.id)
+    .findUserById(req.params.id)
     .then(([rows]) => {
       if (rows[0] == null) {
         res.sendStatus(404);

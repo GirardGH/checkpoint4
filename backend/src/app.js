@@ -5,6 +5,7 @@ const cors = require("cors");
 const router = require("./routes/router");
 const uploadAvatarRouter = require("./routes/avatarUpload.routes");
 const playersRouter = require("./routes/players.routes");
+const countriesRouter = require("./routes/countries.routes");
 
 const app = express();
 
@@ -25,7 +26,7 @@ app.use(express.static(path.join(__dirname, "../public")));
 app.use(express.static(path.join(__dirname, "..", "..", "frontend", "dist")));
 
 // API routes
-app.use(router).use(uploadAvatarRouter).use(playersRouter);
+app.use(router).use(uploadAvatarRouter).use(playersRouter).use(countriesRouter);
 // Redirect all requests to the REACT app
 const reactIndexFile = path.join(
   __dirname,
