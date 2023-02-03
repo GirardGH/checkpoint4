@@ -1,19 +1,21 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-restricted-syntax */
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-function FormCreate() {
+function FormUpdate({ player, hideUpdateForm }) {
+  const id = player.id_player;
   const [playerInfo, setPlayerInfo] = useState({
-    firstname: "",
-    lastname: "",
-    dob: "",
-    position: "",
-    number: "",
-    url_image: "",
-    favorite_team: "",
-    id_country: "",
+    firstname: player.firstname,
+    lastname: player.lastname,
+    dob: new Date(player.dob).toISOString().substr(0, 10),
+    position: player.position,
+    number: player.number,
+    url_image: player.url_image,
+    favorite_team: player.favorite_team,
+    id_country: player.id_country,
   });
-
+  console.log(player);
   const [countriesData, setCountriesData] = useState();
 
   useEffect(() => {
@@ -29,7 +31,7 @@ function FormCreate() {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:5000/players/", playerInfo)
+      .put(`http://localhost:5000/players/${id}`, playerInfo)
       .then((res) => {
         setPlayerInfo({
           firstname: "",
@@ -56,12 +58,12 @@ function FormCreate() {
       <div className="space-y-8 divide-y divide-gray-200 sm:space-y-5">
         <div className="pt-8 space-y-6 sm:pt-10 sm:space-y-5">
           <div>
-            <p className="mt-1 max-w-2xl text-sm text-gray-500">
-              Saisissez vos informations
-            </p>
             <h3 className="text-lg leading-6 font-medium text-gray-900">
               Vos informations
             </h3>
+            <p className="mt-1 max-w-2xl text-sm text-gray-500">
+              Saisissez vos informations
+            </p>
           </div>
           <div className="space-y-6 sm:space-y-5">
             <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
@@ -274,8 +276,9 @@ function FormCreate() {
           <button
             type="button"
             className="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            onClick={hideUpdateForm}
           >
-            Cancel
+            Cancel / Close
           </button>
           <button
             type="submit"
@@ -289,4 +292,4 @@ function FormCreate() {
   );
 }
 
-export default FormCreate;
+export default FormUpdate;

@@ -8,7 +8,7 @@ class PlayerManager extends AbstractManager {
 
   findAllPlayers() {
     return this.connection.query(
-      `select p.id_player, p.firstname, p.lastname, p.dob, p.position, p.number, p.url_image, p.favorite_team, c.flag, c.name from  ${this.table} as p inner join countries as c on p.id_country = c.id_country`
+      `select p.id_player, p.firstname, p.lastname, p.dob, p.position, p.number, p.url_image, p.favorite_team, p.id_country, c.flag, c.name from  ${this.table} as p inner join countries as c on p.id_country = c.id_country`
     );
   }
 

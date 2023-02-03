@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-useless-fragment */
 /* eslint-disable prettier/prettier */
 /* eslint-disable no-lone-blocks */
 import React, { useState, useEffect } from "react";
@@ -49,9 +50,9 @@ export default function Card() {
                       </div>
                       <div className="py-1">
                         <img
-                          className="w-20"
-                          src="https://res.cloudinary.com/db2sa2bxv/image/upload/v1675333658/t%C3%A9l%C3%A9chargement_5_whmmjx.png"
-                          alt="Arthur HRTB"
+                          className="w-12 h-12"
+                          src={player.team.crest}
+                          alt="player"
                         />
                       </div>
                     </div>
@@ -59,31 +60,13 @@ export default function Card() {
                 </div>
                 <div className="back">
                   <p className="text-4xl">{player.player.name}</p>
-                  <p>
-                    {player.player.shirtNumber == null
-                      ? player.player.shirtNumber === "9"
-                      : player.player.shirtNumber}
-                  </p>
-                  <br />
+                  <p>{player.player.shirtNumber || "9"}</p>
                   <p>Buteur</p>
                 </div>
               </div>
             </div>
           );
         })}
-
-      {/* {countriesData && (
-        <div>
-          {countriesData.map((country) => {
-            return (
-              <div key={country.id}>
-                <h1>{country.name}</h1>
-                <img src={country.flag} alt={country.name} />
-              </div>
-            );
-          })}
-        </div>
-      )} */}
     </>
   );
 }
