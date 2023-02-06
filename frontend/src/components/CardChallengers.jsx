@@ -86,8 +86,7 @@ export default function CardChallengers() {
               <div className="flex my-3">
                 <button
                   className="bg-blue-500 text-white p-2 rounded mx-2"
-                  onClick={showUpdateForm.bind(this, player)}
-                >
+                  onClick={() => showUpdateForm(player)}
                   Modifier
                 </button>
                 <ButtonDelete
